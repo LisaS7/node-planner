@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "name": "node_planner",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LisaS7/node-planner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LisaS7/node-planner/issues"
+  },
+  "homepage": "https://github.com/LisaS7/node-planner#readme",
+  "description": ""
+}
