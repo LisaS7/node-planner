@@ -8,3 +8,9 @@
 .table-borderless th {
     border: 0;
 }
+
+/* TASKS */
+
+#task-row .active-task {
+    background-color: blueviolet;
+}
