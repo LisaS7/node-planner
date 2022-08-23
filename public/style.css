@@ -1,0 +1,10 @@
+#weekdays div {
+    border: 1px solid black;
+}
+
+/* TABLES */
+
+.table-borderless td,
+.table-borderless th {
+    border: 0;
+}
