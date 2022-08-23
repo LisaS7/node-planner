@@ -6,7 +6,6 @@
  * @return {Object} The newly created html element
  */
  function addElement (elementString, parent, content=null) {
-    console.log(typeof parent)
     let element = document.createElement(elementString);
     parent.appendChild(element);
     if (content) {
@@ -21,7 +20,8 @@
  * @param {String} className The name of the class to toggle.
  */
 function toggleClass (activeElement, className) {
-    document.getElementsByClassName(className).forEach(inactiveElement => {
+    let otherActive = Array.from(document.getElementsByClassName(className));
+    otherActive.forEach(inactiveElement => {
         inactiveElement.classList.remove(className);
     })
     activeElement.classList.toggle(className);
