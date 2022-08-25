@@ -1,37 +1,32 @@
-import {addElement,toggleClass} from './functions.js';
+/**
+ *  Toggle a task on a given element. Also ensures the class isn't on any other elements.
+ * @param {Object} activeElement The element which the class should be applied to.
+ * @param {String} className The name of the class to toggle.
+ */
+function toggleClass(activeElement, className) {
+  let otherActive = Array.from(document.getElementsByClassName(className));
+  otherActive.forEach((inactiveElement) => {
+    inactiveElement.classList.remove(className);
+  });
+  activeElement.classList.toggle(className);
+}
 
 // Page Elements
-const taskCells = document.querySelectorAll('.taskcell');
-const calendarTable = document.getElementById('calendar-table');
-const dayHeaderRow = document.getElementById('day-headers');
+const taskCells = document.querySelectorAll(".task-cell");
+const plannerCells = document.querySelectorAll(".planner-cell");
 
-// Config
-const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const times = ['8am', '10am', '12pm', '2pm', '4pm'];
-
-
-// Create tasks list
-taskCells.forEach(task => {
-    task.addEventListener('click', () => {
-        toggleClass(task, 'active-task');
-    })
-})
-
-// Generate rows for each of the times
-// Create a cell for each day with id
-times.forEach(time => {
-    let timeRow = addElement('tr', parent=calendarTable);
-    addElement('td', parent=timeRow, content=time);
-    weekdays.forEach(day => {
-        // Create cell and set id
-        let cell = addElement('td', parent=timeRow);
-        cell.id = `${day.slice(0,3)}-${time}`;
-
-        cell.addEventListener('click', () => {
-            let activeTask = document.getElementsByClassName('active-task')[0];
-            cell.innerHTML = activeTask.textContent;
-            cell.style.backgroundColor = activeTask.style.backgroundColor;
-        })
-    })
-})
-
+// Event listeners
+taskCells.forEach((task) => {
+  task.addEventListener("click", () => {
+    toggleClass(task, "active-task");
+  });
+});
+plannerCells.forEach((cell) => {
+  cell.addEventListener("click", () => {
+    let activeTask = document.getElementsByClassName("active-task")[0];
+    if (activeTask) {
+      cell.innerHTML = activeTask.textContent;
+      cell.style.backgroundColor = activeTask.style.backgroundColor;
+    }
+  });
+});

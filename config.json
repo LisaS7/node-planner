@@ -4,5 +4,6 @@
         {"name": "Housework", "colour": "green"},
         {"name": "Jog", "colour": "orange"}
     ],
-    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "times": ["8am", "10am", "12pm", "2pm", "4pm"]
 }

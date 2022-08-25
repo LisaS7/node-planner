@@ -8,10 +8,11 @@ function getJSONData(filepath) {
 
 
 const calendar = (req, res) => {
-    let {tasks, weekdays} = getJSONData('config.json');
+    let {tasks, weekdays, times} = getJSONData('config.json');
     res.render('pages/index', {
         tasks: tasks,
-        weekdays: weekdays
+        weekdays: weekdays,
+        times: times
     });
 }
 
