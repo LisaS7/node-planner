@@ -1,0 +1,8 @@
+<h2>Tasks</h2>
+<table id="task-table" class="table table-borderless">
+  <tr id="task-row">
+    <% tasks.forEach(element => { %>
+    <td class="taskcell"><%= element.name %></td>
+    <% }); %>
+  </tr>
+</table>

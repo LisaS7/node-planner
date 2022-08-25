@@ -1,20 +1,21 @@
 const express = require('express');
-const path = require('path');
-const config = require('./config.json');
 const app = express();
 
+// Functions
+const {calendar} = require('./controllers.js');
+
+// Config
 const PORT = 5000;
+app.set('view engine', 'ejs');
 
-app.use(express.static('./public'))
+app.use(express.static('./public'));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './index.html'))
-})
+app.get('/', calendar)
 
 app.all('*', (req, res) => {
-    res.status(404).send('resource not found!')
+    res.status(404).send('resource not found!');
 })
 
 app.listen(PORT, () => {
-    console.log('server running')
+    console.log('server running');
 })

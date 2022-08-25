@@ -8,3 +8,5 @@ Weekdays and times can be changed in the script.js file.
 
 Todo:
 - Create config file for days and times.
+
+// <%- include('../partials/tasks', {tasks: tasks}); %>
