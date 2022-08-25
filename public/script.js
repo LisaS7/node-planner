@@ -32,8 +32,15 @@ times.forEach(time => {
     let timeRow = addElement('tr', parent=calendarTable);
     addElement('td', parent=timeRow, content=time);
     weekdays.forEach(day => {
+        // Create cell and set id
         let cell = addElement('td', parent=timeRow);
         cell.id = `${day.slice(0,3)}-${time}`;
-        // add event listener for clicks here??
+
+        cell.addEventListener('click', () => {
+            let activeTask = document.getElementsByClassName('active-task')[0];
+            cell.innerHTML = activeTask.textContent;
+            cell.style.backgroundColor = activeTask.style.backgroundColor;
+        })
     })
 })
+
