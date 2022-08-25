@@ -1,21 +1,12 @@
-const express = require('express');
+import express from "express"
+import planner from "./routes/planner.route.js"
 const app = express();
 
-// Functions
-const {calendar} = require('./controllers.js');
-
 // Config
-const PORT = 5000;
 app.set('view engine', 'ejs');
-
 app.use(express.static('./public'));
+app.use('/', planner)
 
-app.get('/', calendar)
+app.all('*', (req, res) => res.status(404).send('Resource not found!'));
 
-app.all('*', (req, res) => {
-    res.status(404).send('resource not found!');
-})
-
-app.listen(PORT, () => {
-    console.log('server running');
-})
+export default app

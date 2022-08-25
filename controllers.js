@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from "fs"
 
 // Helper Functions
 function getJSONData(filepath) {
@@ -16,6 +16,4 @@ const calendar = (req, res) => {
     });
 }
 
-module.exports = {
-    calendar
-}
+export default calendar
