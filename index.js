@@ -1,21 +1,20 @@
 import express from "express"
-import mongodb from "mongodb"
 import dotenv from "dotenv"
+import mongodb from "mongodb"
 import getDB from "./server/database.js"
 import planner from "./server/routes/planner.route.js"
 
 const app = express();
+dotenv.config()
 
-// Config
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
-app.use('/', planner)
+app.get('/', planner)
 
 app.all('*', (req, res) => res.status(404).send('Resource not found!'));
 
 
 
-dotenv.config()
 
 const MongoClient = mongodb.MongoClient
 const PORT = process.env.PORT || 8000

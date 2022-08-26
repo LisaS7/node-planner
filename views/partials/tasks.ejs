@@ -1,8 +1,9 @@
 <h2>Tasks</h2>
-<table id="task-table" class="table table-borderless">
-  <tr id="task-row">
-    <% tasks.forEach(element => { %>
-    <td class="task-cell"><%= element.name %></td>
-    <% }); %>
-  </tr>
-</table>
+<div id="task-grid" class="grid">
+  <% tasks.forEach(element => { %>
+  <div class="task-cell">
+    <%= element.name %>
+    <i class="<%= element.icon %>"></i>
+  </div>
+  <% }); %>
+</div>

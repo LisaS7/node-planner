@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../partials/head'); %>
-  </head>
+  <%- include('../partials/head'); %>
   <body>
     <div class="container">
       <header><h1>Weekly Planner</h1></header>
@@ -12,7 +10,8 @@
       </div>
 
       <div id="planner-container" class="m-4">
-        <%- include('../partials/planner', {weekdays: weekdays, times: times}); %>
+        <%- include('../partials/planner', {weekdays: weekdays, times: times});
+        %>
       </div>
     </div>
 

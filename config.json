@@ -1,8 +1,8 @@
 {
     "tasks": [
-        {"name": "Study", "colour": "blue"},
-        {"name": "Housework", "colour": "green"},
-        {"name": "Jog", "colour": "orange"}
+        {"name": "Study", "colour": "blue", "icon": "fa-solid fa-graduation-cap"},
+        {"name": "Housework", "colour": "green", "icon": ""},
+        {"name": "Jog", "colour": "orange", "icon": ""}
     ],
     "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "times": ["8am", "10am", "12pm", "2pm", "4pm"]
