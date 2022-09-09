@@ -16,4 +16,8 @@ const calendar = (req, res) => {
     });
 }
 
-export default calendar
+const options = (req, res) => {
+    res.render('pages/options');
+};
+
+export {calendar, options}

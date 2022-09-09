@@ -2,14 +2,15 @@ import express from "express"
 import dotenv from "dotenv"
 import mongodb from "mongodb"
 import getDB from "./server/database.js"
-import planner from "./server/routes/planner.route.js"
+import router from "./server/routes/planner.route.js"
 
 const app = express();
 dotenv.config()
 
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
-app.get('/', planner)
+app.get('/', router)
+app.get('/options', router)
 
 app.all('*', (req, res) => res.status(404).send('Resource not found!'));
 

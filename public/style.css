@@ -18,9 +18,9 @@
 /* TASKS */
 
 .task-cell {
+    display: flex;
     border-radius: 5px;
-    max-width: 60%;
-    padding: 20px 10px;
+    padding: 10px 10px;
     text-align: center;
 }
 
