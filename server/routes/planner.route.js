@@ -2,9 +2,11 @@ import express from "express"
 const router = express.Router()
 
 // Functions
-import {calendar, options} from '../controllers.js'
+import {calendar, tasks, users} from '../controllers.js'
 
 router.route("/").get(calendar);
-router.route("/options").get(options);
+router.route("/tasks").get(tasks);
+router.route("/users").get(users);
+
 
 export default router

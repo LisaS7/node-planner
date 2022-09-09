@@ -1,3 +1,9 @@
+:root{
+    --border: #999999;
+    --border-hover: #333333;
+    --bright1: cadetblue;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -5,7 +11,7 @@
 }
 
 #weekdays div {
-    border: 1px solid black;
+    border: 1px solid var(--border);
 }
 
 /* TABLES */
@@ -26,4 +32,37 @@
 
 #task-grid .active-task {
     background-color: blueviolet;
+}
+
+/* FORM */
+
+.task-form, .user-form{
+    max-width: 600px;
+    margin: 3em auto;
+}
+
+.form-group{
+    margin: 1em;
+}
+
+.form-group label{
+    margin: .6em 0;
+}
+
+.form-group input[type="text"]{
+    width: 100%;
+    padding: .6em 1em;
+    border: 1px solid var(--border);
+    border-radius: .3em;
+}
+
+.form-group .btn{
+    width: 100%;
+    margin: .7em 0;
+    padding: .6em 1em;
+    background-color: var(--bright1);
+}
+
+.form-group .btn:hover{
+    border: 2px solid var(--border-hover);
 }

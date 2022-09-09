@@ -31,7 +31,8 @@ plannerCells.forEach((cell) => {
   cell.addEventListener("click", () => {
     let activeTask = document.getElementsByClassName("active-task")[0];
     if (activeTask) {
-      cell.innerHTML = activeTask.textContent;
+      const taskName = activeTask.querySelector(':scope > p').textContent;
+      cell.textContent = taskName;
       cell.style.backgroundColor = getComputedStyle(activeTask).getPropertyValue('background-color');
     } else  {
       alert("Please select a task.");

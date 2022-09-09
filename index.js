@@ -10,7 +10,9 @@ dotenv.config()
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.get('/', router)
-app.get('/options', router)
+app.get('/tasks', router)
+app.get('/users', router)
+
 
 app.all('*', (req, res) => res.status(404).send('Resource not found!'));
 

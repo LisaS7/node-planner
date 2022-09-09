@@ -16,8 +16,12 @@ const calendar = (req, res) => {
     });
 }
 
-const options = (req, res) => {
-    res.render('pages/options');
+const tasks = (req, res) => {
+    res.render('pages/manage_tasks');
 };
 
-export {calendar, options}
+const users = (req, res) => {
+    res.render('pages/manage_users');
+};
+
+export {calendar, tasks, users}

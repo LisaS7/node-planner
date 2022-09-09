@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'); %>
+  <body>
+    <div class="container">
+      <%- include('../partials/nav'); %>
+
+      <div class="task-form">
+        <h3>Add Task</h3>
+        <form method="POST" id="add_task">
+          <div class="form-group">
+            <label for="name">Task Name</label>
+            <input type="text" name="name" placeholder="Study" />
+          </div>
+          <div class="form-group">
+            <label for="colour">Task Colour (Hex)</label>
+            <input type="text" name="colour" placeholder="#0066ff" />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn">Submit</button>
+          </div>
+        </form>
+      </div>
+    <%- include('../partials/scripts'); %>
+  </body>
+</html>

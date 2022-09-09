@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head'); %>
+  <body>
+    <div class="container">
+      <%- include('../partials/nav'); %>
+
+      <div class="user-form">
+        <h3>Add User</h3>
+        <form method="POST" id="add_user">
+          <div class="form-group">
+            <label for="name">User Name</label>
+            <input type="text" name="name" placeholder="Alec" />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <%- include('../partials/scripts'); %>
+  </body>
+</html>
