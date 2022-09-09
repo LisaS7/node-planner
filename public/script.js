@@ -1,14 +1,20 @@
 /**
- *  Toggle a task on a given element. Also ensures the class isn't on any other elements.
+ *  Toggle a task on a given element. If class is on the selected element it will be removed.
+ * Also ensures the class isn't on any other elements as only one element should be active at a time.
  * @param {Object} activeElement The element which the class should be applied to.
  * @param {String} className The name of the class to toggle.
  */
-function toggleClass(activeElement, className) {
-  let otherActive = Array.from(document.getElementsByClassName(className));
-  otherActive.forEach((inactiveElement) => {
-    inactiveElement.classList.remove(className);
-  });
+function setActiveClass(activeElement, className) {
   activeElement.classList.toggle(className);
+
+  let previousActive = Array.from(document.getElementsByClassName(className));
+  previousActive.forEach((element) => {
+    if (element !== activeElement) {
+      element.classList.remove(className);
+    }
+  });
+
+  
 }
 
 // Page Elements
@@ -18,7 +24,7 @@ const plannerCells = document.querySelectorAll(".planner-cell");
 // Event listeners
 taskCells.forEach((task) => {
   task.addEventListener("click", () => {
-    toggleClass(task, "active-task");
+    setActiveClass(task, "active-task");
   });
 });
 plannerCells.forEach((cell) => {
@@ -26,7 +32,9 @@ plannerCells.forEach((cell) => {
     let activeTask = document.getElementsByClassName("active-task")[0];
     if (activeTask) {
       cell.innerHTML = activeTask.textContent;
-      cell.style.backgroundColor = activeTask.style.backgroundColor;
+      cell.style.backgroundColor = getComputedStyle(activeTask).getPropertyValue('background-color');
+    } else  {
+      alert("Please select a task.");
     }
   });
 });
