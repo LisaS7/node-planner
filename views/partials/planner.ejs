@@ -1,19 +1,22 @@
-<table id="calendar-table" class="table">
-  <tr id="day-headers">
-    <!-- blank cell to create times column -->
-    <td></td>
-    <% weekdays.forEach(day => { %>
-    <td><%= day %></td>
-    <% }); %>
-  </tr>
-  <% times.forEach(time => { %>
-  <tr>
-    <td><%= time %></td>
-    <% weekdays.forEach(day => { %>
-      <% let id = `${day.slice(0,3)}-${time}` %>
-    <td id=<%= id %> class="planner-cell"></td>
-    <% }); %>
-  </tr>
+<form method="post" action="">
+  <table id="calendar-table" class="table">
+    <tr id="day-headers">
+      <!-- blank cell to create times column -->
+      <td></td>
+      <% weekdays.forEach(day => { %>
+      <td><%= day %></td>
+      <% }); %>
+    </tr>
+    <% times.forEach(time => { %>
+    <tr>
+      <td><%= time %></td>
+      <% weekdays.forEach(day => { %> <% let id = `${day.slice(0,3)}-${time}` %>
+      <td id="<%= id %>" class="planner-cell"></td>
+      <% }); %>
+    </tr>
 
-  <% }); %>
-</table>
+    <% }); %>
+  </table>
+  <input type="hidden" name="planner" />
+  <button type="submit" class="btn">Submit</button>
+</form>

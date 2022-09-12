@@ -9,7 +9,6 @@ function getJSONData(filepath) {
 
 const calendar = async (req, res) => {
   const tasks = await Task.find();
-  console.log(tasks)
   let { weekdays, times } = getJSONData("config.json");
 
   res.render("pages/index", { tasks, weekdays, times });

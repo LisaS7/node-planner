@@ -17,4 +17,5 @@ What I learned
 - MongoDB
 
 Challenges
-- The app refused to connect to MongoDB, raising a MongoServerSelectionError. After some troubleshooting using the Atlas CLI, I realised that I'd set access for only my IP, which had changed after rebooting my router the previous day. I've now learned how to check the IP address access list in the Atlas CLI and how to allow all IP addresses to access the database.
+- The app refused to connect to MongoDB, raising a MongoServerSelectionError. After some troubleshooting using the Atlas CLI, I realised that I'd set the MongoDB cluster access for only my IP, which had changed after I rebooted my router the previous day. I've now learned how to check the IP address access list in the Atlas CLI and how to allow all IP addresses to access the database.
+- Submitting table data as a form (tbc)
