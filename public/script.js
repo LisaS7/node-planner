@@ -13,8 +13,17 @@ function setActiveClass(activeElement, className) {
       element.classList.remove(className);
     }
   });
+}
 
-  
+/**
+ *  Copy source cell text contents and background colour to target planner cell.
+ * @param {Object} source The task element to copy from.
+ * @param {String} target The planner element to copy to.
+ */
+function formatTargetCell(source, target) {
+      target.textContent = source.querySelector(':scope > p').textContent;
+      target.style.backgroundColor = getComputedStyle(source).getPropertyValue('background-color');
+
 }
 
 // Page Elements
@@ -29,13 +38,11 @@ taskCells.forEach((task) => {
 });
 plannerCells.forEach((cell) => {
   cell.addEventListener("click", () => {
-    let activeTask = document.getElementsByClassName("active-task")[0];
-    if (activeTask) {
-      const taskName = activeTask.querySelector(':scope > p').textContent;
-      cell.textContent = taskName;
-      cell.style.backgroundColor = getComputedStyle(activeTask).getPropertyValue('background-color');
-    } else  {
-      alert("Please select a task.");
-    }
+  let selectedTask = document.getElementsByClassName("active-task")[0];
+  if (selectedTask) {
+    formatTargetCell(selectedTask, cell);
+  } else {
+    alert("Please select a task.");
+  }
   });
 });
