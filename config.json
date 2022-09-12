@@ -1,9 +1,4 @@
 {
-    "tasks": [
-        {"name": "Study", "colour": "blue", "icon": "menu_book"},
-        {"name": "Housework", "colour": "green", "icon": "cleaning_services"},
-        {"name": "Jog", "colour": "orange", "icon": "directions_run"}
-    ],
     "weekdays": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
     "times": ["8am", "10am", "12pm", "2pm", "4pm"]
 }

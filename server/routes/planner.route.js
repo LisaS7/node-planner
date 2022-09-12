@@ -2,10 +2,11 @@ import express from "express"
 const router = express.Router()
 
 // Functions
-import {calendar, tasks, users} from '../controllers.js'
+import {calendar, getTasks, addTask, users} from '../controllers.js'
 
 router.route("/").get(calendar);
-router.route("/tasks").get(tasks);
+router.route("/tasks").get(getTasks);
+router.route("/tasks").post(addTask);
 router.route("/users").get(users);
 
 

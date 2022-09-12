@@ -6,20 +6,48 @@
       <%- include('../partials/nav'); %>
 
       <div class="task-form">
-        <h3>Add Task</h3>
-        <form method="POST" id="add_task">
-          <div class="form-group">
-            <label for="name">Task Name</label>
-            <input type="text" name="name" placeholder="Study" />
-          </div>
-          <div class="form-group">
-            <label for="colour">Task Colour (Hex)</label>
-            <input type="text" name="colour" placeholder="#0066ff" />
+        <h4>Add Task</h4>
+        <a href="https://fonts.google.com/icons">Browse Icons</a>
+        <form action="/tasks" method="POST" id="add_task">
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="name">Task Name</label>
+              <input type="text" name="name" placeholder="Study" />
+            </div>
+            <div class="form-group">
+              <label for="colour">Task Colour (Hex)</label>
+              <input type="text" name="colour" placeholder="#0066ff" />
+            </div>
+            <div class="form-group">
+              <label for="icon">Task Icon</label>
+              <input type="text" name="icon" placeholder="square" />
+            </div>
           </div>
           <div class="form-group">
             <button type="submit" class="btn">Submit</button>
           </div>
         </form>
+
+        <div class="task-container">
+          <% if (allTasks.length > 0) { %>
+            <table class="table m-5">
+              <tr>
+                <th>Task</th>
+                <th>Colour</th>
+                <th>Icon</th>
+              </tr>
+            <% allTasks.forEach(task => { %>
+              <tr>
+                <td><%= task.name %></td>
+                <td><%= task.colour %></td>
+                <td><%= task.icon %></td>
+              </tr>
+            <% }) %>
+            </table>
+            <% } else { %>
+              <p>There are no tasks to display</p>
+            <% } %>
+        </div>
       </div>
     <%- include('../partials/scripts'); %>
   </body>

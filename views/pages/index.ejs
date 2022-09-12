@@ -6,12 +6,11 @@
       <%- include('../partials/nav'); %>
 
       <div id="task-container" class="m-4">
-        <%- include('../partials/tasks', {tasks: tasks}); %>
+        <%- include('../partials/tasks', {tasks}); %>
       </div>
 
       <div id="planner-container" class="m-4">
-        <%- include('../partials/planner', {weekdays: weekdays, times: times});
-        %>
+        <%- include('../partials/planner', {weekdays, times}); %>
       </div>
     </div>
 

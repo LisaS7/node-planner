@@ -1,9 +1,9 @@
 <p>Select a task:</p>
 <div id="task-grid" class="grid">
   <% tasks.forEach(element => { %>
-  <div class="task-cell">
-    <span class="material-icons mx-2"><%= element.icon %></span>
-    <p><%= element.name %><p>
-  </div>
-  <% }); %>
+    <div class="task-cell" style="background-color: <%= element.colour %>;">
+      <span class="material-icons mx-2"><%= element.icon %></span>
+      <p><%= element.name %><p>
+    </div>
+    <% }); %>
 </div>

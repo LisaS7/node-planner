@@ -1,27 +1,38 @@
-import fs from "fs"
+import fs from "fs";
+import { Task } from "../models/tasks.js";
 
 // Helper Functions
 function getJSONData(filepath) {
-    let data = fs.readFileSync(filepath, 'utf8');
-    return JSON.parse(data);
+  let data = fs.readFileSync(filepath, "utf8");
+  return JSON.parse(data);
 }
 
+const calendar = async (req, res) => {
+  const tasks = await Task.find();
+  console.log(tasks)
+  let { weekdays, times } = getJSONData("config.json");
 
-const calendar = (req, res) => {
-    let {tasks, weekdays, times} = getJSONData('config.json');
-    res.render('pages/index', {
-        tasks: tasks,
-        weekdays: weekdays,
-        times: times
-    });
-}
+  res.render("pages/index", { tasks, weekdays, times });
+};
 
-const tasks = (req, res) => {
-    res.render('pages/manage_tasks');
+const addTask = async (req, res) => {
+  try {
+    const task = new Task(req.body);
+    await task.save();
+    const allTasks = await Task.find();
+    res.render("pages/manage_tasks", { allTasks });
+  } catch (error) {
+    console.log(err);
+  }
+};
+
+const getTasks = (req, res) => {
+  const allTasks = Task.find();
+  res.render("pages/manage_tasks", { allTasks });
 };
 
 const users = (req, res) => {
-    res.render('pages/manage_users');
+  res.render("pages/manage_users");
 };
 
-export {calendar, tasks, users}
+export { calendar, addTask, getTasks, users };
