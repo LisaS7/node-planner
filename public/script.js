@@ -18,10 +18,10 @@ function setActiveClass(activeElement, className) {
 /**
  *  Copy source cell text contents and background colour to target planner cell.
  * @param {Object} source The task element to copy from.
- * @param {String} target The planner element to copy to.
+ * @param {String} target The planner element to copy to, defined by the class "planner-cell".
  */
 function formatTargetCell(source, target) {
-      target.textContent = source.querySelector(':scope > p').textContent;
+      target.value = source.querySelector(':scope > p').textContent;
       target.style.backgroundColor = getComputedStyle(source).getPropertyValue('background-color');
 
 }

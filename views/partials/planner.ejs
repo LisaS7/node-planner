@@ -11,12 +11,11 @@
     <tr>
       <td><%= time %></td>
       <% weekdays.forEach(day => { %> <% let id = `${day.slice(0,3)}-${time}` %>
-      <td id="<%= id %>" class="planner-cell"></td>
+      <td><input name="<%= id %>" class="planner-cell" /></td>
       <% }); %>
     </tr>
 
     <% }); %>
   </table>
-  <input type="hidden" name="planner" />
-  <button type="submit" class="btn">Submit</button>
+  <button id="submit-btn" type="submit" class="btn">Save Plan</button>
 </form>

@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get("/", router);
+app.post("/", router);
 app.get("/tasks", router);
 app.post("/tasks", router);
 app.get("/users", router);
