@@ -8,10 +8,12 @@
     "mongoose": "^6.6.0"
   },
   "devDependencies": {
+    "jest": "^29.0.3",
     "nodemon": "^2.0.19"
   },
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "test": "jest"
   },
   "name": "node_planner",
   "version": "1.0.0",

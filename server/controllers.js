@@ -8,6 +8,10 @@ function getJSONData(filepath) {
   return JSON.parse(data);
 }
 
+function stringToArray(str) {
+  return str.split(",").map((item) => item.trim());
+}
+
 // Restructure single object returned by request to fit Plan model
 // example: {value1: value2} becomes {slot: value1, task: value2}
 function formatData(obj) {
@@ -23,23 +27,23 @@ function formatData(obj) {
 }
 
 // Assign colours to each document in plans collection if there is a task scheduled
-async function colourPlans(plans) {
+function colourPlans(plans, tasks) {
   for (const plan of plans) {
     if (plan.task) {
-      const task = await Task.findOne({ name: plan.task });
-      plan.colour = task.colour;
+      const task = tasks.find((item) => item.name === plan.task);
+      plan.colour = task.colour || process.env.DEFAULT_PLAN_COLOUR;
     }
   }
   return plans;
 }
 
 // Route functions
-
 const planner = async (req, res) => {
   const tasks = await Task.find();
   const plans = await Plan.find();
-  await colourPlans(plans);
-  let { weekdays, times } = getJSONData("config.json");
+  const colouredPlans = colourPlans(plans, tasks);
+  let weekdays = stringToArray(process.env.WEEKDAYS);
+  let times = stringToArray(process.env.TIMES);
   res.render("pages/index", { tasks, plans, weekdays, times });
 };
 
