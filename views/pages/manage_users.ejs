@@ -7,7 +7,7 @@
 
       <div class="user-form">
         <h3>Add User</h3>
-        <form method="POST" id="add_user">
+        <form action="/users" method="POST" id="add_user">
           <div class="form-group">
             <label for="name">User Name</label>
             <input type="text" name="name" placeholder="Alec" />
@@ -17,6 +17,25 @@
           </div>
         </form>
       </div>
+    </div>
+
+    <div class="user-container">
+      <% if (allUsers.length > 0) { %>
+      <table class="table m-5">
+        <tr>
+          <th>Name</th>
+          <th>tbc</th>
+        </tr>
+        <% allUsers.forEach(user => { %>
+        <tr>
+          <td><%= user.name %></td>
+          <td></td>
+        </tr>
+        <% }) %>
+      </table>
+      <% } else { %>
+      <p>There are no users to display</p>
+      <% } %>
     </div>
     <%- include('../partials/scripts'); %>
   </body>

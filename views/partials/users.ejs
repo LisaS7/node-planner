@@ -1,0 +1,9 @@
+<p>Select a user:</p>
+<form action="/" method="get">
+  <select name="user" onchange="this.form.submit()">
+    <% users.forEach(user => { %>
+    <option value="<%= user.name %>"><%= user.name %></option>
+    <% }); %>
+  </select>
+  <noscript><input type="submit" value="Select" /></noscript>
+</form>

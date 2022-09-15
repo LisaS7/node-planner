@@ -3,17 +3,21 @@ const router = express.Router();
 
 // Functions
 import {
-  planner,
-  savePlanner,
+  getPlanner,
+  postPlanner,
   getTasks,
-  addTask,
-  users,
+  postTask,
+  getUsers,
+  postUser,
+  admin,
 } from "../controllers.js";
 
-router.route("/").get(planner);
-router.route("/").post(savePlanner);
+router.route("/").get(getPlanner);
+router.route("/").post(postPlanner);
 router.route("/tasks").get(getTasks);
-router.route("/tasks").post(addTask);
-router.route("/users").get(users);
+router.route("/tasks").post(postTask);
+router.route("/users").get(getUsers);
+router.route("/users").post(postUser);
+router.route("/admin").get(admin);
 
 export default router;

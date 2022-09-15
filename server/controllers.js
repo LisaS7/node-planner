@@ -1,28 +1,24 @@
-import fs from "fs";
 import { Task } from "../models/tasks.js";
 import { Plan } from "../models/plan.js";
+import { User } from "../models/users.js";
 
 // Helper Functions
-function getJSONData(filepath) {
-  let data = fs.readFileSync(filepath, "utf8");
-  return JSON.parse(data);
-}
-
 function stringToArray(str) {
   return str.split(",").map((item) => item.trim());
 }
 
 // Restructure single object returned by request to fit Plan model
 // example: {value1: value2} becomes {slot: value1, task: value2}
-function formatData(obj) {
+function formatData(obj, user) {
   const res = [];
   const keys = Object.keys(obj);
-  keys.forEach((key) => {
+  for (const key of keys) {
     res.push({
       slot: key,
       task: obj[key],
+      user: user,
     });
-  });
+  }
   return res;
 }
 
@@ -38,44 +34,75 @@ function colourPlans(plans, tasks) {
 }
 
 // Route functions
-const planner = async (req, res) => {
+
+function admin(req, res) {
+  res.render("pages/admin");
+}
+
+const getPlanner = async (req, res) => {
   const tasks = await Task.find();
   const plans = await Plan.find();
-  const colouredPlans = colourPlans(plans, tasks);
+  colourPlans(plans, tasks);
+  const users = await User.find();
+  const selectedUser = req.query.user || users[0];
+  if (selectedUser) {
+  }
   let weekdays = stringToArray(process.env.WEEKDAYS);
   let times = stringToArray(process.env.TIMES);
-  res.render("pages/index", { tasks, plans, weekdays, times });
+  res.render("pages/index", { tasks, plans, users, weekdays, times });
 };
 
-const savePlanner = async (req, res) => {
-  try {
-    Plan.clearAll();
-    let data = formatData(req.body);
+const postPlanner = async (req, res) => {
+  const selectedUser = req.query.user;
+  if (selectedUser) {
+    Plan.deleteMany({ user: selectedUser });
+    let data = formatData(req.body, selectedUser);
     Plan.insertMany(data);
     res.redirect("/");
-  } catch (error) {
-    console.log(error);
+  } else {
+    alert("Please select a user");
   }
 };
 
-const addTask = async (req, res) => {
+const postTask = async (req, res) => {
   try {
     const task = new Task(req.body);
     await task.save();
-    const allTasks = await Task.find();
-    res.render("pages/manage_tasks", { allTasks });
+    res.redirect("tasks");
   } catch (error) {
     console.log(err);
   }
 };
 
-const getTasks = (req, res) => {
-  const allTasks = Task.find();
+const getTasks = async (req, res) => {
+  const allTasks = await Task.find();
+  console.log(allTasks);
   res.render("pages/manage_tasks", { allTasks });
 };
 
-const users = (req, res) => {
-  res.render("pages/manage_users");
+const getUsers = async (req, res) => {
+  const allUsers = await User.find();
+  res.render("pages/manage_users", { allUsers });
 };
 
-export { planner, savePlanner, addTask, getTasks, users };
+const postUser = async (req, res) => {
+  try {
+    const user = new User(req.body);
+    await user.save();
+    res.redirect("users");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  getPlanner,
+  postPlanner,
+  postTask,
+  getTasks,
+  getUsers,
+  postUser,
+  admin,
+  colourPlans,
+  formatData,
+};

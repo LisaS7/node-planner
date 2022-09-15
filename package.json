@@ -5,7 +5,8 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "mongodb": "^4.9.0",
-    "mongoose": "^6.6.0"
+    "mongoose": "^6.6.0",
+    "save-dev": "^0.0.1-security"
   },
   "devDependencies": {
     "jest": "^29.0.3",
@@ -14,6 +15,9 @@
   "scripts": {
     "start": "nodemon app.js",
     "test": "jest"
+  },
+  "jest": {
+    "collectCoverage": true
   },
   "name": "node_planner",
   "version": "1.0.0",

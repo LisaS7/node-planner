@@ -21,6 +21,16 @@
   border: 0;
 }
 
+td > input {
+  border: 0px;
+  border-radius: 5px;
+}
+
+.user-container {
+  width: 40%;
+  margin: auto;
+}
+
 /* TASKS */
 
 .task-cell {
@@ -40,7 +50,8 @@
 }
 
 /* PLANNER */
-.planner-cell, #day-headers > td {
+.planner-cell,
+#day-headers > td {
   text-align: center;
 }
 

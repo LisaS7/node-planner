@@ -24,6 +24,8 @@ app.post("/", router);
 app.get("/tasks", router);
 app.post("/tasks", router);
 app.get("/users", router);
+app.post("/users", router);
+app.get("/admin", router);
 app.all("*", (req, res) => res.status(404).send("Resource not found!"));
 
 mongoose

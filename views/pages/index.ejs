@@ -5,7 +5,11 @@
     <div class="container">
       <%- include('../partials/nav'); %>
 
-      <div id="task-container" class="m-4">
+      <div id="user-container" class="m-3">
+        <%- include('../partials/users', {users}); %>
+      </div>
+
+      <div id="task-container" class="m-5">
         <%- include('../partials/tasks', {tasks}); %>
       </div>
 
@@ -15,7 +19,6 @@
     </div>
 
     <script type="module" src="script.js"></script>
-    <!-- <script type="module" src="ajax.js"></script> -->
 
     <%- include('../partials/scripts'); %>
   </body>
