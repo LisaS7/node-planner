@@ -41,27 +41,33 @@ function admin(req, res) {
 
 const getPlanner = async (req, res) => {
   const tasks = await Task.find();
-  const plans = await Plan.find();
-  colourPlans(plans, tasks);
   const users = await User.find();
-  const selectedUser = req.query.user || users[0];
-  if (selectedUser) {
-  }
+  const selectedUser = req.query.user;
+  const plans = await Plan.find({ user: selectedUser });
+  colourPlans(plans, tasks);
+
   let weekdays = stringToArray(process.env.WEEKDAYS);
   let times = stringToArray(process.env.TIMES);
-  res.render("pages/index", { tasks, plans, users, weekdays, times });
+
+  res.render("pages/index", {
+    tasks,
+    plans,
+    selectedUser,
+    users,
+    weekdays,
+    times,
+  });
 };
 
 const postPlanner = async (req, res) => {
   const selectedUser = req.query.user;
+  console.log(selectedUser);
   if (selectedUser) {
-    Plan.deleteMany({ user: selectedUser });
+    await Plan.deleteMany({ user: selectedUser });
     let data = formatData(req.body, selectedUser);
     Plan.insertMany(data);
-    res.redirect("/");
-  } else {
-    alert("Please select a user");
   }
+  res.redirect(`/?user=${selectedUser}`);
 };
 
 const postTask = async (req, res) => {

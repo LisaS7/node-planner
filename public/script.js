@@ -21,9 +21,9 @@ function setActiveClass(activeElement, className) {
  * @param {String} target The planner element to copy to, defined by the class "planner-cell".
  */
 function formatTargetCell(source, target) {
-      target.value = source.querySelector(':scope > p').textContent;
-      target.style.backgroundColor = getComputedStyle(source).getPropertyValue('background-color');
-
+  target.value = source.querySelector(":scope > p").textContent;
+  target.style.backgroundColor =
+    getComputedStyle(source).getPropertyValue("background-color");
 }
 
 // Page Elements
@@ -38,11 +38,14 @@ taskCells.forEach((task) => {
 });
 plannerCells.forEach((cell) => {
   cell.addEventListener("click", () => {
-  let selectedTask = document.getElementsByClassName("active-task")[0];
-  if (selectedTask) {
+    let selectedTask = document.getElementsByClassName("active-task")[0];
+    let selectedUser = document.querySelector("select").value;
+    if (!selectedTask) {
+      alert("Please select a task.");
+    }
+    if (!selectedUser) {
+      alert("Please select a user.");
+    }
     formatTargetCell(selectedTask, cell);
-  } else {
-    alert("Please select a task.");
-  }
   });
 });
