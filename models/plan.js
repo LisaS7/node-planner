@@ -9,6 +9,9 @@ const planSchema = new Schema({
   task: {
     type: String,
   },
+  colour: {
+    type: String,
+  },
   user: {
     type: String,
   },

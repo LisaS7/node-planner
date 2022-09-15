@@ -1,5 +1,5 @@
 <form method="post" action="">
-  <table id="calendar-table" class="table">
+  <table id="planner-table" class="table">
     <tr id="day-headers">
       <!-- blank cell to create times column -->
       <td></td>
@@ -10,8 +10,16 @@
     <% times.forEach(time => { %>
     <tr>
       <td><%= time %></td>
-      <% weekdays.forEach(day => { %> <% let id = `${day.slice(0,3)}-${time}` %>
-      <td><input name="<%= id %>" class="planner-cell" /></td>
+      <% weekdays.forEach(day => { %> <% let cellID = createID(day, time) %> <%
+      let plan = getPlanBySlotID(plans, cellID) %>
+      <td>
+        <input
+          name="<%= cellID %>"
+          class="planner-cell"
+          value="<%= plan.task %>"
+          style="background-color: <%= plan.colour %>"
+        />
+      </td>
       <% }); %>
     </tr>
 

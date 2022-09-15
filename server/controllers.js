@@ -10,7 +10,7 @@ function getJSONData(filepath) {
 
 // Restructure single object returned by request to fit Plan model
 // example: {value1: value2} becomes {slot: value1, task: value2}
-const formatData = (obj) => {
+function formatData(obj) {
   const res = [];
   const keys = Object.keys(obj);
   keys.forEach((key) => {
@@ -20,21 +20,35 @@ const formatData = (obj) => {
     });
   });
   return res;
-};
+}
+
+// Assign colours to each document in plans collection if there is a task scheduled
+async function colourPlans(plans) {
+  for (const plan of plans) {
+    if (plan.task) {
+      const task = await Task.findOne({ name: plan.task });
+      plan.colour = task.colour;
+    }
+  }
+  return plans;
+}
 
 // Route functions
-const calendar = async (req, res) => {
-  const tasks = await Task.find();
-  let { weekdays, times } = getJSONData("config.json");
 
-  res.render("pages/index", { tasks, weekdays, times });
+const planner = async (req, res) => {
+  const tasks = await Task.find();
+  const plans = await Plan.find();
+  await colourPlans(plans);
+  let { weekdays, times } = getJSONData("config.json");
+  res.render("pages/index", { tasks, plans, weekdays, times });
 };
 
-const saveCalendar = async (req, res) => {
+const savePlanner = async (req, res) => {
   try {
     Plan.clearAll();
     let data = formatData(req.body);
     Plan.insertMany(data);
+    res.redirect("/");
   } catch (error) {
     console.log(error);
   }
@@ -60,4 +74,4 @@ const users = (req, res) => {
   res.render("pages/manage_users");
 };
 
-export { calendar, saveCalendar, addTask, getTasks, users };
+export { planner, savePlanner, addTask, getTasks, users };
