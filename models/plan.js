@@ -17,10 +17,13 @@ const planSchema = new Schema({
   },
 });
 
-planSchema.statics.clearAll = function () {
-  this.deleteMany({}).catch((error) => {
+planSchema.statics.deleteByUser = async function (userid) {
+  try {
+    const deleted = await this.deleteMany({ user: userid });
+    console.log(`[DELETE] Plans for ${userid}: ${deleted}`);
+  } catch (error) {
     console.log(error);
-  });
+  }
 };
 
 const Plan = mongoose.model("Plan", planSchema);

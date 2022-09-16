@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import router from "./server/routes/planner.route.js";
-import { createID, getPlanBySlotID } from "./template_functions.js";
+import { createID, getPlanBySlotID } from "./views/template_functions.js";
 
 const app = express();
 

@@ -1,9 +1,11 @@
 <p>Select a user:</p>
 <form action="/" method="get">
   <select name="user" class="form-select">
-    <option selected><%= selectedUser || '-' %></option>
-    <% users.forEach(user => { %> <% if (user.name !== selectedUser) { %>
-    <option value="<%= user.name %>"><%= user.name %></option>
+    <option selected><%= selectedName|| '-' %></option>
+    <% users.forEach(user => { %> <% if (user.name !== selectedName) { %>
+
+    <option value="<%= user._id %>"><%= user.name %></option>
+
     <% } %> <% }); %>
   </select>
   <button id="submit-btn" type="submit" class="btn btn-dark my-3">

@@ -24,12 +24,16 @@
       <table class="table m-5">
         <tr>
           <th>Name</th>
-          <th>tbc</th>
+          <th></th>
         </tr>
         <% allUsers.forEach(user => { %>
         <tr>
           <td><%= user.name %></td>
-          <td></td>
+          <td>
+            <a href="/users/<%= user._id %>/delete"
+              ><span class="material-icons">delete</span></a
+            >
+          </td>
         </tr>
         <% }) %>
       </table>

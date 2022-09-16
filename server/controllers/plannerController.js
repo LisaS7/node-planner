@@ -40,19 +40,25 @@ function admin(req, res) {
 }
 
 async function getPlanner(req, res) {
+  const weekdays = stringToArray(process.env.WEEKDAYS);
+  const times = stringToArray(process.env.TIMES);
+
   const tasks = await Task.find();
   const users = await User.find();
-  const selectedUser = req.query.user;
-  const plans = await Plan.find({ user: selectedUser });
-  colourPlans(plans, tasks);
+  const selectedUser = users.find((user) => user._id == req.query.user);
 
-  let weekdays = stringToArray(process.env.WEEKDAYS);
-  let times = stringToArray(process.env.TIMES);
+  let plans = {};
+  let selectedName = "";
+  if (selectedUser) {
+    plans = await Plan.find({ user: selectedUser._id });
+    colourPlans(plans, tasks);
+    selectedName = selectedUser.name;
+  }
 
   res.render("pages/index", {
     tasks,
     plans,
-    selectedUser,
+    selectedName,
     users,
     weekdays,
     times,
@@ -60,21 +66,21 @@ async function getPlanner(req, res) {
 }
 
 async function postPlanner(req, res) {
-  const selectedUser = req.query.user;
+  const selectedUser = await User.findOne({ _id: req.query.user });
   if (selectedUser) {
-    await Plan.deleteMany({ user: selectedUser }).catch((error) => {
+    await Plan.deleteMany({ user: selectedUser._id }).catch((error) => {
       console.log(
-        `[ERROR] Failed to delete existing documents from database for ${selectedUser}`
+        `[ERROR] Failed to delete existing documents from database for ${selectedUser._id} ${selectedUser.name}`
       );
       console.log(error);
     });
-    let data = formatData(req.body, selectedUser);
+    let data = formatData(req.body, selectedUser._id);
     Plan.insertMany(data).catch((error) => {
       console.log(`[ERROR] Failed to create documents`);
       console.log(error);
     });
   }
-  res.redirect(`/?user=${selectedUser}`);
+  res.redirect(`/?user=${selectedUser._id}`);
 }
 
 export { getPlanner, postPlanner, admin, colourPlans, formatData };
