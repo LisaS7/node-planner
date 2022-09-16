@@ -35,19 +35,15 @@ async function getPlanner(req, res) {
 
 async function postPlanner(req, res) {
   const selectedUser = await User.findOne({ _id: req.query.user });
-  if (selectedUser) {
-    await Plan.deleteMany({ user: selectedUser._id }).catch((error) => {
-      console.log(
-        `[ERROR] Failed to delete existing documents from database for ${selectedUser._id} ${selectedUser.name}`
-      );
-      console.log(error);
-    });
-    let data = myFxs.formatData(req.body, selectedUser._id);
-    Plan.insertMany(data).catch((error) => {
-      console.log(`[ERROR] Failed to create documents`);
-      console.log(error);
-    });
+  if (!selectedUser) {
+    console.log("[ERROR] No user selected");
+    res.redirect("/");
   }
+
+  await Plan.deleteByUser(selectedUser);
+  let data = myFxs.formatData(req.body, selectedUser._id);
+  await Plan.addPlans(selectedUser.name, data);
+
   res.redirect(`/?user=${selectedUser._id}`);
 }
 

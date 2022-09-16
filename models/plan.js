@@ -17,11 +17,31 @@ const planSchema = new Schema({
   },
 });
 
-planSchema.statics.deleteByUser = async function (userid) {
+planSchema.statics.deleteByUser = async function (user) {
   try {
-    const deleted = await this.deleteMany({ user: userid });
-    console.log(`[DELETE] Plans for ${userid}: ${deleted}`);
+    const deleted = await this.deleteMany({ user: user._id });
+    console.log(`[DELETE] Old plans for ${user.name} (${user._id})`);
+    console.log(deleted);
   } catch (error) {
+    console.log(
+      `[ERROR] Failed to delete existing documents from database for ${user.name} (${user._id})`
+    );
+  }
+};
+
+planSchema.statics.addPlans = async function (name, data) {
+  try {
+    const added = await Plan.insertMany(data);
+    const newPlans = added
+      .filter((item) => item.task !== "")
+      .map(({ slot, task }) => {
+        return { slot, task };
+      });
+    console.log(`[CREATE] New plans for ${name}`);
+    console.log(newPlans);
+  } catch (error) {
+    console.log(`[ERROR] Failed to create documents`);
+    console.log(data);
     console.log(error);
   }
 };
