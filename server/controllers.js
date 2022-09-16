@@ -39,7 +39,7 @@ function admin(req, res) {
   res.render("pages/admin");
 }
 
-const getPlanner = async (req, res) => {
+async function getPlanner(req, res) {
   const tasks = await Task.find();
   const users = await User.find();
   const selectedUser = req.query.user;
@@ -57,9 +57,9 @@ const getPlanner = async (req, res) => {
     weekdays,
     times,
   });
-};
+}
 
-const postPlanner = async (req, res) => {
+async function postPlanner(req, res) {
   const selectedUser = req.query.user;
   console.log(selectedUser);
   if (selectedUser) {
@@ -68,9 +68,9 @@ const postPlanner = async (req, res) => {
     Plan.insertMany(data);
   }
   res.redirect(`/?user=${selectedUser}`);
-};
+}
 
-const postTask = async (req, res) => {
+async function postTask(req, res) {
   try {
     const task = new Task(req.body);
     await task.save();
@@ -78,20 +78,20 @@ const postTask = async (req, res) => {
   } catch (error) {
     console.log(err);
   }
-};
+}
 
-const getTasks = async (req, res) => {
+async function getTasks(req, res) {
   const allTasks = await Task.find();
   console.log(allTasks);
   res.render("pages/manage_tasks", { allTasks });
-};
+}
 
-const getUsers = async (req, res) => {
+async function getUsers(req, res) {
   const allUsers = await User.find();
   res.render("pages/manage_users", { allUsers });
-};
+}
 
-const postUser = async (req, res) => {
+async function postUser(req, res) {
   try {
     const user = new User(req.body);
     await user.save();
@@ -99,7 +99,7 @@ const postUser = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 export {
   getPlanner,
