@@ -1,6 +1,6 @@
-import { Task } from "../models/tasks.js";
-import { Plan } from "../models/plan.js";
-import { User } from "../models/users.js";
+import { Task } from "../../models/tasks.js";
+import { Plan } from "../../models/plan.js";
+import { User } from "../../models/users.js";
 
 // Helper Functions
 function stringToArray(str) {
@@ -61,54 +61,20 @@ async function getPlanner(req, res) {
 
 async function postPlanner(req, res) {
   const selectedUser = req.query.user;
-  console.log(selectedUser);
   if (selectedUser) {
-    await Plan.deleteMany({ user: selectedUser });
+    await Plan.deleteMany({ user: selectedUser }).catch((error) => {
+      console.log(
+        `[ERROR] Failed to delete existing documents from database for ${selectedUser}`
+      );
+      console.log(error);
+    });
     let data = formatData(req.body, selectedUser);
-    Plan.insertMany(data);
+    Plan.insertMany(data).catch((error) => {
+      console.log(`[ERROR] Failed to create documents`);
+      console.log(error);
+    });
   }
   res.redirect(`/?user=${selectedUser}`);
 }
 
-async function postTask(req, res) {
-  try {
-    const task = new Task(req.body);
-    await task.save();
-    res.redirect("tasks");
-  } catch (error) {
-    console.log(err);
-  }
-}
-
-async function getTasks(req, res) {
-  const allTasks = await Task.find();
-  console.log(allTasks);
-  res.render("pages/manage_tasks", { allTasks });
-}
-
-async function getUsers(req, res) {
-  const allUsers = await User.find();
-  res.render("pages/manage_users", { allUsers });
-}
-
-async function postUser(req, res) {
-  try {
-    const user = new User(req.body);
-    await user.save();
-    res.redirect("users");
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export {
-  getPlanner,
-  postPlanner,
-  postTask,
-  getTasks,
-  getUsers,
-  postUser,
-  admin,
-  colourPlans,
-  formatData,
-};
+export { getPlanner, postPlanner, admin, colourPlans, formatData };

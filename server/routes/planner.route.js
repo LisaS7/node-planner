@@ -5,12 +5,10 @@ const router = express.Router();
 import {
   getPlanner,
   postPlanner,
-  getTasks,
-  postTask,
-  getUsers,
-  postUser,
   admin,
-} from "../controllers.js";
+} from "../controllers/plannerController.js";
+import { getUsers, postUser } from "../controllers/userController.js";
+import { getTasks, postTask } from "../controllers/taskController.js";
 
 router.route("/").get(getPlanner);
 router.route("/").post(postPlanner);
