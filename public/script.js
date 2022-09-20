@@ -26,11 +26,35 @@ function formatTargetCell(source, target) {
     getComputedStyle(source).getPropertyValue("background-color");
 }
 
+/**
+ *  Get parameter value from current URL
+ * @param {String} param The name of the parameter to return
+ * @return {String} The current user ID
+ */
+function getURLParam(param) {
+  const currentURL = new URL(window.location.href);
+  try {
+    return currentURL.searchParams.get(param);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Page Elements
 const taskCells = document.querySelectorAll(".task-cell");
 const plannerCells = document.querySelectorAll(".planner-cell");
+const clearPlansButton = document.querySelector("#clearUserPlans");
+const form = document.querySelector("#planner-form");
 
 // Event listeners
+form.onsubmit = (e) => {
+  const user = getURLParam("user");
+  if (!user) {
+    e.preventDefault();
+    alert("Please select a user.");
+  }
+};
+
 taskCells.forEach((task) => {
   task.addEventListener("click", () => {
     setActiveClass(task, "active-task");
@@ -48,4 +72,13 @@ plannerCells.forEach((cell) => {
     }
     formatTargetCell(selectedTask, cell);
   });
+});
+
+clearPlansButton.addEventListener("click", (e) => {
+  const user = getURLParam("user");
+  if (!user) {
+    e.preventDefault();
+    alert("Please select a user.");
+  }
+  window.location.href = `/users/${user}/clearplans`;
 });

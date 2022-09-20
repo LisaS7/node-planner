@@ -20,7 +20,7 @@ const planSchema = new Schema({
 planSchema.statics.deleteByUser = async function (user) {
   try {
     const deleted = await this.deleteMany({ user: user._id });
-    console.log(`[DELETE] Old plans for ${user.name} (${user._id})`);
+    console.log(`[DELETE] Plans for ${user.name} (${user._id})`);
     console.log(deleted);
   } catch (error) {
     console.log(

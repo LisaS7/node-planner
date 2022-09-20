@@ -35,15 +35,10 @@ async function getPlanner(req, res) {
 
 async function postPlanner(req, res) {
   const selectedUser = await User.findOne({ _id: req.query.user });
-  if (!selectedUser) {
-    console.log("[ERROR] No user selected");
-    res.redirect("/");
-  }
 
   await Plan.deleteByUser(selectedUser);
   let data = myFxs.formatData(req.body, selectedUser._id);
   await Plan.addPlans(selectedUser.name, data);
-
   res.redirect(`/?user=${selectedUser._id}`);
 }
 

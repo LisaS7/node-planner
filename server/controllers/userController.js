@@ -29,4 +29,16 @@ async function deleteUser(req, res) {
   res.redirect("/users");
 }
 
-export { getUsers, postUser, deleteUser };
+async function clearUserPlans(req, res) {
+  const userid = req.params.id;
+  try {
+    const user = await User.findOne({ _id: userid });
+    await Plan.deleteByUser(user);
+  } catch (error) {
+    console.log(error);
+  }
+  const params = new URLSearchParams({ user: userid });
+  res.redirect(`/?${params.toString()}`);
+}
+
+export { getUsers, postUser, deleteUser, clearUserPlans };

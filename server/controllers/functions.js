@@ -23,8 +23,12 @@ function formatData(obj, user) {
 function colourPlans(plans, tasks) {
   for (const plan of plans) {
     if (plan.task) {
-      const task = tasks.find((item) => item.name === plan.task);
-      plan.colour = task.colour || process.env.DEFAULT_PLAN_COLOUR;
+      try {
+        const task = tasks.find((item) => item.name === plan.task);
+        plan.colour = task.colour;
+      } catch (error) {
+        plan.colour = process.env.DEFAULT_PLAN_COLOUR;
+      }
     }
   }
   return plans;
