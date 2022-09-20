@@ -70,7 +70,14 @@ plannerCells.forEach((cell) => {
     if (!selectedUser) {
       alert("Please select a user.");
     }
-    formatTargetCell(selectedTask, cell);
+    if (selectedTask.id === "erase-task") {
+      cell.value = "";
+      cell.style.backgroundColor = getComputedStyle(
+        document.documentElement
+      ).getPropertyValue("--bg-colour");
+    } else {
+      formatTargetCell(selectedTask, cell);
+    }
   });
 });
 

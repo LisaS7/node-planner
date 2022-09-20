@@ -35,11 +35,12 @@
                 <th>Task</th>
                 <th>Colour</th>
                 <th>Icon</th>
+                <th></th>
               </tr>
             <% allTasks.forEach(task => { %>
               <tr>
                 <td><%= task.name %></td>
-                <td><%= task.colour %></td>
+                <td style="background-color:<%= task.colour %>"><%= task.colour %></td>
                 <td><%= task.icon %></td>
                 <td>
                   <a href="/tasks/<%= task._id %>/delete"

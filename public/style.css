@@ -1,7 +1,9 @@
 :root {
+  --bg-colour: #ffffff;
   --border: #999999;
   --border-hover: #333333;
   --bright1: cadetblue;
+  --erase-task-bg: #f0f0f5;
 }
 
 .grid {
@@ -47,6 +49,10 @@ td > input {
 
 #task-grid .active-task {
   border: 4px solid rgb(0, 174, 255);
+}
+
+#erase-task {
+  background-color: var(--erase-task-bg);
 }
 
 /* PLANNER */
