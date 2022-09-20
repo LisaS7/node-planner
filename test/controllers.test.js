@@ -1,12 +1,4 @@
-const {
-  planner,
-  postPlanner,
-  postTask,
-  getTasks,
-  users,
-  colourPlans,
-  formatData,
-} = require("../server/controllers.js");
+import { colourPlans, formatData } from "../server/controllers/functions.js";
 
 const unformattedTestObject = {
   time: "task",
@@ -14,9 +6,12 @@ const unformattedTestObject = {
 
 describe("Formatting", () => {
   test("Formatting", () => {
-    expect(formatData(unformattedTestObject)).toStrictEqual({
-      slot: "time",
-      task: "task",
-    });
+    expect(formatData(unformattedTestObject, "user1")).toStrictEqual([
+      {
+        slot: "time",
+        task: "task",
+        user: "user1",
+      },
+    ]);
   });
 });

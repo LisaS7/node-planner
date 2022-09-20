@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "nodemon app.js",
-    "test": "jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "jest": {
     "collectCoverage": true

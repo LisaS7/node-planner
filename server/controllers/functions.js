@@ -3,8 +3,9 @@ function stringToArray(str) {
   return str.split(",").map((item) => item.trim());
 }
 
-// Restructure single object returned by planner POST request to fit database Plan model
-// example: {value1: value2} becomes {slot: value1, task: value2}
+// Restructure the body returned by planner POST request to fit database Plan model
+// and include the user id. Returns an array of objects.
+// example: {value1: value2} becomes {slot: value1, task: value2, user: user}
 function formatData(obj, user) {
   const res = [];
   const keys = Object.keys(obj);
