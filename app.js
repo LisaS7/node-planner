@@ -12,14 +12,14 @@ const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 8000;
 const URI = process.env.PLANNER_DB_URI;
-const viewPath = path.join(
+const basePath = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
   "views/pages"
 );
 
 app.set("view engine", "ejs");
-app.set("views", viewPath);
-app.use(express.static("./public"));
+app.set("views", path.join(basePath, "pages"));
+app.use(express.static(path.join(basePath, "/public")));
 app.use(express.urlencoded({ extended: true }));
 
 app.locals.getPlanBySlotID = getPlanBySlotID;
