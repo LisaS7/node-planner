@@ -8,6 +8,7 @@ const app = express();
 
 // Middleware & config
 dotenv.config();
+console.log(process.env);
 const PORT = process.env.PORT || 8000;
 const URI = process.env.PLANNER_DB_URI;
 
