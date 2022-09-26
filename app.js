@@ -12,13 +12,10 @@ const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 8000;
 const URI = process.env.PLANNER_DB_URI;
-const basePath = path.join(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "views/pages"
-);
+const basePath = path.dirname(fileURLToPath(import.meta.url));
 
 app.set("view engine", "ejs");
-app.set("views", path.join(basePath, "pages"));
+app.set("views", path.join(basePath, "views/pages"));
 app.use(express.static(path.join(basePath, "/public")));
 app.use(express.urlencoded({ extended: true }));
 
