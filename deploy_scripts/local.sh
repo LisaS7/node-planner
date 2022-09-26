@@ -1,0 +1,1 @@
+scp -i ~/.ssh/aws/portfolio-apps-key.pem /home/forest/Documents/node_planner/deploy/node_planner.service ec2-user@ec2-52-56-147-199.eu-west-2.compute.amazonaws.com:/home/ec2-user

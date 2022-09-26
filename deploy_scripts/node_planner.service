@@ -1,0 +1,16 @@
+[Unit]
+Description=Node Planner
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /home/ec2-user/node-planner/app.js
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=node-planner
+User=ec2-user
+EnvironmentFile=/home/ec2-user/config/node-planner/app.env
+
+[Install]
+WantedBy=multi-user.target
