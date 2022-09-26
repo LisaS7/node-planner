@@ -4,7 +4,7 @@ import { User } from "../../models/users.js";
 import * as myFxs from "./functions.js";
 
 function admin(req, res) {
-  res.render("pages/admin");
+  res.render("admin");
 }
 
 async function getPlanner(req, res) {
@@ -23,7 +23,7 @@ async function getPlanner(req, res) {
     selectedName = selectedUser.name;
   }
 
-  res.render("pages/index", {
+  res.render("index.ejs", {
     tasks,
     plans,
     selectedName,

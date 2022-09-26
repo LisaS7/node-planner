@@ -3,7 +3,7 @@ import { User } from "../../models/users.js";
 
 async function getUsers(req, res) {
   const allUsers = await User.find();
-  res.render("pages/manage_users", { allUsers });
+  res.render("manage_users", { allUsers });
 }
 
 async function postUser(req, res) {

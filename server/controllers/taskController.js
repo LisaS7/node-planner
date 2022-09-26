@@ -13,7 +13,7 @@ async function postTask(req, res) {
 
 async function getTasks(req, res) {
   const allTasks = await Task.find();
-  res.render("pages/manage_tasks", { allTasks });
+  res.render("manage_tasks", { allTasks });
 }
 
 async function deleteTask(req, res) {
