@@ -1,4 +1,4 @@
-mv node_planner.service ~/etc/systemd/system
+[ -f ~/node_planner.service] || mv ~/node_planner.service ~/etc/systemd/system
 rm -rf ~/node-planner
 git clone https://github.com/LisaS7/node-planner.git
 cd ~/node-planner
