@@ -16,8 +16,10 @@ const basePath = path.dirname(fileURLToPath(import.meta.url));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(basePath, "views/pages"));
-app.use(express.static(path.join(basePath, "/public")));
+app.use("/public", express.static(path.join(basePath, "/public/")));
 app.use(express.urlencoded({ extended: true }));
+
+console.log(path.join(basePath, "/public/"));
 
 app.locals.getPlanBySlotID = getPlanBySlotID;
 app.locals.createID = createID;
