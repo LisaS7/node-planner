@@ -23,7 +23,7 @@ app.locals.getPlanBySlotID = getPlanBySlotID;
 app.locals.createID = createID;
 
 // Routes
-app.use("/", router);
+app.use("/planner/", router);
 app.all("*", (req, res) => res.status(404).send("Resource not found!"));
 
 mongoose
