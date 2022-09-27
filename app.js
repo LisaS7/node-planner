@@ -24,7 +24,7 @@ app.locals.createID = createID;
 
 // Routes
 app.use("/planner/", router);
-app.all("*", (req, res) => res.status(404).send("Resource not found!"));
+app.all("*", (req, res) => res.status(404).send(`Resource not found: ${req}`));
 
 mongoose
   .connect(URI, { useNewUrlParser: true })
