@@ -37,8 +37,6 @@ async function clearUserPlans(req, res) {
   } catch (error) {
     console.log(error);
   }
-  console.log(req);
-  console.log(req.headers.host);
   const params = new URLSearchParams({ user: userid });
   res.redirect(`http://${req.headers.host}/?${params.toString()}`);
 }
