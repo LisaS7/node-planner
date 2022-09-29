@@ -39,7 +39,7 @@ async function postPlanner(req, res) {
   await Plan.deleteByUser(selectedUser);
   let data = myFxs.formatData(req.body, selectedUser._id);
   await Plan.addPlans(selectedUser.name, data);
-  res.redirect(`/?user=${selectedUser._id}`);
+  res.redirect(`./?user=${selectedUser._id}`);
 }
 
 export { getPlanner, postPlanner, admin };
