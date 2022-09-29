@@ -1,5 +1,5 @@
 <p>Select a user:</p>
-<form action="/" method="get">
+<form action="./" method="get">
   <select name="user" class="form-select">
     <option selected><%= selectedName|| '-' %></option>
     <% users.forEach(user => { %> <% if (user.name !== selectedName) { %>
