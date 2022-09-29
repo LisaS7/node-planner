@@ -51,7 +51,7 @@ form.onsubmit = (e) => {
   const user = getURLParam("user");
   if (!user) {
     e.preventDefault();
-    alert("Please select a user.");
+    alert("Please select a user and then press the Change User button.");
   }
 };
 
@@ -87,5 +87,5 @@ clearPlansButton.addEventListener("click", (e) => {
     e.preventDefault();
     alert("Please select a user.");
   }
-  window.location.href = `/users/${user}/clearplans`;
+  window.location.href = `./users/${user}/clearplans`;
 });
