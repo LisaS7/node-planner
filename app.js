@@ -17,17 +17,14 @@ const contextPath = "/planner";
 
 app.set("view engine", "ejs");
 app.set("views", path.join(basePath, "views/pages"));
-app.use(
-  `${contextPath}/public/`,
-  express.static(path.join(basePath, "/public/"))
-);
+app.use(`/public/`, express.static(path.join(basePath, "/public/")));
 app.use(express.urlencoded({ extended: true }));
 
 app.locals.getPlanBySlotID = getPlanBySlotID;
 app.locals.createID = createID;
 
 // Routes
-app.use("/planner/", router);
+app.use("/", router);
 app.all("*", (req, res) => res.status(404).send(`Resource not found: ${req}`));
 
 mongoose
