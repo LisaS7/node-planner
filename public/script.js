@@ -44,6 +44,7 @@ function getURLParam(param) {
 const taskCells = document.querySelectorAll(".task-cell");
 const plannerCells = document.querySelectorAll(".planner-cell");
 const clearPlansButton = document.querySelector("#clearUserPlans");
+const resetButton = document.querySelector("#reset-form");
 const form = document.querySelector("#planner-form");
 
 // Event listeners
@@ -88,4 +89,10 @@ clearPlansButton.addEventListener("click", (e) => {
     alert("Please select a user.");
   }
   window.location.href = `./users/${user}/clearplans`;
+});
+
+resetButton.addEventListener("click", (e) => {
+  plannerCells.forEach((cell) => {
+    cell.style.backgroundColor = "";
+  });
 });

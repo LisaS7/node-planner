@@ -1,38 +1,40 @@
 <form id="planner-form" method="post" action="">
-  <table id="planner-table" class="table">
-    <tr id="day-headers">
-      <!-- blank cell to create times column -->
-      <td></td>
-      <% weekdays.forEach(day => { %>
-      <td><%= day %></td>
-      <% }); %>
-    </tr>
-    <% times.forEach(time => { %>
-    <tr>
-      <td><%= time %></td>
-      <% weekdays.forEach(day => { %> <% let cellID = createID(day, time) %> <%
-      let plan = getPlanBySlotID(plans, cellID) %>
-      <td>
-        <input
-          name="<%= cellID %>"
-          class="planner-cell"
-          value="<%= plan.task %>"
-          style="background-color: <%= plan.colour %>"
-        />
-      </td>
-      <% }); %>
-    </tr>
+  <div class="table-responsive">
+    <table id="planner-table" class="">
+      <tr id="day-headers">
+        <!-- blank cell to create times column -->
+        <td id="blank-cell"></td>
+        <% weekdays.forEach(day => { %>
+        <th><%= day %></th>
+        <% }); %>
+      </tr>
+      <% times.forEach(time => { %>
+      <tr>
+        <td class="time-cell"><%= time %></td>
+        <% weekdays.forEach(day => { %> <% let cellID = createID(day, time) %>
+        <% let plan = getPlanBySlotID(plans, cellID) %>
+        <td>
+          <input
+            name="<%= cellID %>"
+            class="planner-cell"
+            value="<%= plan.task %>"
+            style="background-color: <%= plan.colour %>"
+          />
+        </td>
+        <% }); %>
+      </tr>
 
-    <% }); %>
-  </table>
+      <% }); %>
+    </table>
+  </div>
   <button id="submit-btn" type="submit" class="btn btn-dark m-3">
     Save Plan
   </button>
-  <input class="btn btn-dark m-3" type="reset" value="Drop Changes" />
+  <input id="reset-form" class="btn btn-dark m-3" type="reset" value="Reset" />
   <input
     id="clearUserPlans"
     class="btn btn-dark m-3"
     type="button"
-    value="Clear All"
+    value="Delete Plan"
   />
 </form>

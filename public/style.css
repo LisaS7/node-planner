@@ -6,27 +6,34 @@
   --erase-task-bg: #f0f0f5;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
+@media only screen and (min-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  table {
+    font-size: 0.75rem;
+  }
+}
+
+.form-select {
+  width: 20vw;
 }
 
 #weekdays div {
   border: 1px solid var(--border);
 }
 
-/* TABLES */
-
-.table-borderless td,
-.table-borderless th {
-  border: 0;
-}
-
-td > input {
-  border: 0px;
-  border-radius: 5px;
-}
+/* USERS */
 
 .user-container {
   width: 40%;
@@ -56,9 +63,38 @@ td > input {
 }
 
 /* PLANNER */
-.planner-cell,
-#day-headers > td {
+
+#planner-table {
+  width: 75%;
+}
+
+#planner-table td,
+#planner-table th {
+  vertical-align: middle;
   text-align: center;
+  border: 1px solid var(--border);
+}
+
+#blank-cell {
+  border-top: 0 !important;
+  border-left: 0 !important;
+}
+
+.time-cell,
+#planner-table th {
+  padding: 1vh 1vw;
+}
+
+td > input {
+  padding: 2vh 1vw;
+  border: 0px;
+  border-radius: 5px;
+  width: 10vw;
+}
+
+.planner-cell {
+  text-align: center;
+  font-size: 0.8rem;
 }
 
 /* FORM */
